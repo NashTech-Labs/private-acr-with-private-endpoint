@@ -99,35 +99,3 @@ variable "private_endpoint_service_connection_name" {
 variable "dns_zone_group" {
   type    = string
 }
-
-############################
-# ACR AGENT POOL variables #
-############################
-
-# ACR AGENT POOL NAME
-variable "acr_agent_pool_name" {
-  description = "name of the agent pool for ACR"
-  type        = string
-  default     = "acr-agent-pool"
-}
-
-######################
-# ACR TASK variables #
-######################
-
-# ACR TASK NAME
-variable "acr_task" {
-  description = "name of the task for ACR"
-  type        = string
-  default     = "acr-task"
-}
-
-variable "context_path" {
-  description = "url of the context"
-  type        = string
-}
-
-variable "context_access_token" {
-  description = "access token of the context"
-  type        = string
-}
