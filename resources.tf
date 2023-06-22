@@ -66,37 +66,3 @@ resource "azurerm_private_endpoint" "acr_private_endpoint" {
     ]
   }
 }
-
-# Create acr agent pool
-resource "azurerm_container_registry_agent_pool" "acr_agent_pool" {
-  name                    = var.acr_agent_pool_name
-  resource_group_name     = azurerm_resource_group.acr_resource_group.name
-  location                = azurerm_resource_group.acr_resource_group.location
-  container_registry_name = azurerm_container_registry.acr.name
-}
-
-# create acr task
-resource "azurerm_container_registry_task" "acr_task" {
-  name                  = var.acr_task
-  container_registry_id = azurerm_container_registry.acr.id
-  agent_pool_name       = azurerm_container_registry_agent_pool.acr_agent_pool.name
-  platform {
-    os = "Linux"
-  }
-  docker_step {
-    dockerfile_path      = "Dockerfile"
-    context_path         = var.context_path
-    context_access_token = var.context_access_token
-    image_names          = ["sample/helloworld:v1"]
-  }
-  source_trigger {
-    name           = "commits-trigger"
-    events         = ["commit"]
-    repository_url = var.context_path
-    source_type    = "Github"
-    authentication {
-      token      = var.context_access_token
-      token_type = "PAT"
-    }
-  }
-}
