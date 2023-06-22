@@ -19,10 +19,6 @@ This is a terraform module for creating private acr with private endpoint which 
 | private_endpoint_vnet_private_link_name | name of the private link (in private endpoint) to create for private endpoint and vnet | string | true | |
 | private_endpoint_service_connection_name | private endpoint service connection name | string | true | |
 | dns_zone_group | dns zone group name | string | true | |
-| acr_agent_pool_name | name of the agent pool for ACR | string | false | acr-agent-pool
-| acr_task | name of the task for ACR | string | false | acr-task |
-| context_path | url of the context | string | true | |
-| context_access_token |access token of the context | string | true | |
 
 ## Steps for Execution
 
